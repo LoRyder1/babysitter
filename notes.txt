@@ -1,0 +1,18 @@
+Cucumber is a tool used to implement a Behavior Driven Design workflow. BDD practioners like to use the terms behaviour and expectation rather than testing and test.
+
+Where are tests located?
+Cucumber divides test into two parts, the outward facing feature 'scenario' steps and the inward facing step 'definitions'. Features are descriptions of desired outcomes (Then) following upon specific event (When) under predefined conditions (Given). Feature files are given the extension .feature. 
+Step definitions, or stepdefs, are keyed by their snippets of text from the feature scenario statements adn invoke blocks of Ruby an Rails code.
+
+Writing Tests?
+Constructing tests or features begins with the question Where do I begin? It is important to write each test/feature scenario one stepdef at a time. Use plain language in the feature file. In the long run, the best results are achieved when you write feature statements adn step definitions incrementally, using the absolute minimum code to express the requirement. 
+
+XP or Extreme programming methodology - intended to improve software quality and responsiveness to changing customer requirements. YAGNI or ("You aren't gonna need it") is a principle of XP that states a programmer should not add functionality until deemed necessary. YAGNI goes along with "do the simplest thing that could possibly work" (DTSTTCPW). It is intended to be used along with other practices like: continuous refactoring, continuos refactoring, continuos automated unit testing, and continuous integration. Using it without continuous refactoring, it could lead to disorganized code adn massive rework. Continuous integration is the practice of merging all developer workign copies to a shared mainline several times a day. 
+
+Avoiding diversion into coding adventures that technically interesting but financially pointless concentrates your limited resources on the tasks that count and measureably reduces teh overall complexity of the project. Avoid featuritis: If the user did not ask for it then exactly why are we writing it? Also, because you are continuously running your tests any forthcoming changes that break anything will be caught right away. 
+
+As is the case with most professions, the real value that a skilled programmer provides lies not so much in knowing how to do something as in knowing when and where it must be done. The real challenge with maintaining code is simply discovering whih piece of code to change. Finding the exact spots in a application that needs attention is the biggest maintenance problem. 
+
+When faced with two or more alternatives that deliver roughly the same value, take the path tha tmakes future change easier. 
+
+Cucumber is an integration test harness. It is designed to exercise teh entire applicaiton stack from the view down to the database
