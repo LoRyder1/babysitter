@@ -46,18 +46,3 @@ class BabySitterPay
     @endtime > MIDNIGHT ? @endtime - MIDNIGHT : 0
   end
 end
-
-# @sitting = BabySitterPay.new(16,22,28)
-# @sitting1 = BabySitterPay.new(17,22,29)
-# @sitting2 = BabySitterPay.new(17,22,22) 
-# @sitting3 = BabySitterPay.new(17,22,23)
-# @sitting4 = BabySitterPay.new(17,22,24)
-# @sitting5 = BabySitterPay.new(17,22,25)
-# @sitting6 = BabySitterPay.new(17,22,28)
-# @sitting7 = BabySitterPay.new(17,22,18)
-# p @sitting7.calculate_pay == 12
-# p @sitting2.calculate_pay == 60
-# p @sitting3.calculate_pay == 68
-# p @sitting4.calculate_pay == 76
-# p @sitting5.calculate_pay == 92
-# p @sitting6.calculate_pay == 140

@@ -40,8 +40,3 @@ describe 'BabySitterPay' do
     end
   end
 end
-
-# p @sitting4.calculate_pay == 76
-# p @sitting5.calculate_pay == 92
-# p @sitting6.calculate_pay == 140
-
