@@ -16,3 +16,22 @@ As is the case with most professions, the real value that a skilled programmer p
 When faced with two or more alternatives that deliver roughly the same value, take the path tha tmakes future change easier. 
 
 Cucumber is an integration test harness. It is designed to exercise teh entire applicaiton stack from the view down to the database
+
+Cucumber tests are meant to test the system as the user sees it. Tests written in RSpec are generally meant to address the system directly, via its API, the way the developer sees it. The main weakness of Cucumber tests is that sometimes you are encouraged to write the acceptance tests at the same level of granularity that an analyst might write their acceptance criteria on a story card. You don't want very slow acceptance tests that don't necessarily match the functinality you've built
+
+Cucumber tests can be extremely readable, they focus on high-level functionality and use domain-specific terms, it is a quick way to answere the "WHat does this app do again?"
+
+Most folks think of testing as something you do after development is complete. But TDD is really more of a design activity; you are specifying how your APIs should work before you actually start coding.
+
+Testing pyramid: Acceptance Tests at the top, then Integration tests, and then Unit tests.
+
+The test pyramid is a concept in a book Succeeding with Agile. Its essential point is that you should have many more low-level unit tests than high level end-to-end tests running through a GUI. The Eye of Providence is at the top. 
+
+Often organizaiton get trapped into creating 'inverted' pyramids of software testing - this resembles an ice-cream cone. So this would be the software testing ice-cream cone(anti-pattern). An anti-pattern is defined as a common response to a recurring problem that is usualy ineffective and risks being highly counterproductive. 
+
+Ice-cream cone anti-pattern - Manual Tests at the top, automated GUI Tests, integration tests, and then Unit Tests at the bottom. 
+
+Testing through the UI can be slow, increase build times, most importantly such tests are very brittle. An enhancement to the system can easily end up breaking lots of such tests, which then have to be re-recorded. End to end tests are more prone to non-determinism problems. Sometimes there is the problem of non-deterministic test - tests that sometimes fail and sometimes pass. 
+
+A common problem is that sometimes programmers conflate end-to-end test, UI tests, and customer facing tests. These are all orthogonal characteristics. High level tests are there as a second line of test defense. If you get a failure there, you've got a bug in your functional code, you also have a missing unit test. Whenever yo fix a failing end-to-end test, you should be adding unit tests too.
+
