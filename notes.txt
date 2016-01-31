@@ -35,3 +35,4 @@ Testing through the UI can be slow, increase build times, most importantly such 
 
 A common problem is that sometimes programmers conflate end-to-end test, UI tests, and customer facing tests. These are all orthogonal characteristics. High level tests are there as a second line of test defense. If you get a failure there, you've got a bug in your functional code, you also have a missing unit test. Whenever yo fix a failing end-to-end test, you should be adding unit tests too.
 
+Acceptance Testing - RSpec and Cucumber are both used. These tests are usually business-case driven Integration Tests, which mean they simulate the way a user uses the application and uses the full Rails stack so problems with the way the different parts of your application work together can be found in a way that unit testing will not find. 
