@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe 'BabySitterPay' do
   before(:each) do
-    @sitting2 = BabySitterPay.new(17,22,22) 
-    @sitting3 = BabySitterPay.new(17,22,23)
     @sitting4 = BabySitterPay.new(17,22,24)
     @sitting5 = BabySitterPay.new(17,22,25)
     @sitting6 = BabySitterPay.new(17,22,28)
@@ -21,6 +19,17 @@ describe 'BabySitterPay' do
     end
   end
 
+  context 'calculating pay for various pay hours' do
+    it 'pay for hours upto bedtime' do
+      @sitting2 = BabySitterPay.new(17,22,22)
+      expect(@sitting2.calculate_pay).to eq 60
+    end
+
+    it 'pay for hours with hours after bedtime' do
+      @sitting3 = BabySitterPay.new(17,22,23)
+      expect(@sitting3.calculate_pay).to eq 68
+    end
+  end
 end
 # p @sitting2.calculate_pay == 60
 # p @sitting3.calculate_pay == 68
