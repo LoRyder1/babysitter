@@ -23,9 +23,16 @@ describe 'BabySitterPay' do
   end
 
   context 'Calculating hours for babysitting' do
-    it 'hours before bedtime are calculated' do
+    before(:each) do
       @hours = HoursWorkedCalculator.new(17,28)
+    end
+
+    it 'hours before bedtime are calculated' do
       expect(@hours.before_bedtime).to eq 5
+    end
+
+    it 'hours before midnight are calculated' do
+      expect(@hours.before_midnight).to eq 2
     end
   end
 
