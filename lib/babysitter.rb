@@ -1,22 +1,21 @@
-require 'pry'
-
 BEFORE_BEDTIME_PAY = 12
 AFTER_BEDTIME_PAY = 8
 AFTER_MIDNIGHT_PAY = 16
 MIDNIGHT = 24
+BEDTIME = 22
 
 class BabySitterPay
   attr_reader :message
-  def initialize start_time, bedtime, endtime
-    @start_time, @bedtime, @endtime = start_time, bedtime, endtime
+  def initialize start_time, endtime
+    @hours = HoursWorkedCalculator.new(start_time, endtime) 
     @message = nil
     valid_schedule?
   end
 
   def valid_schedule?
-    if @start_time < 17
+    if @hours.start_time < 17
       @message = "Must have start time after 5pm"
-    elsif @endtime > 28
+    elsif @hours.endtime > 28
       @message = "Must have end time before 4am"
     else
       @message = "You have a valid schedule!"
@@ -24,25 +23,27 @@ class BabySitterPay
   end
 
   def calculate_pay
-    BEFORE_BEDTIME_PAY * (hours_before_bedtime) +
-    AFTER_BEDTIME_PAY * (hours_before_midnight) + 
-    AFTER_MIDNIGHT_PAY * (hours_after_midnight)
+    BEFORE_BEDTIME_PAY * (@hours.before_bedtime) +
+    AFTER_BEDTIME_PAY * (@hours.before_midnight) +
+    AFTER_MIDNIGHT_PAY * (@hours.after_midnight)
+  end
+end
+
+class HoursWorkedCalculator
+  attr_reader :start_time, :endtime
+  def initialize start_time, endtime 
+    @start_time, @endtime = start_time, endtime
   end
 
-  private
-  def hours_before_bedtime
-    if @bedtime > @endtime
-      @endtime - @start_time
-    else
-      @bedtime - @start_time
-    end
+  def before_bedtime
+    BEDTIME > @endtime ? @endtime - @start_time : BEDTIME - @start_time
   end
 
-  def hours_before_midnight
-    @endtime < MIDNIGHT ? @endtime - @bedtime : MIDNIGHT - @bedtime
+  def before_midnight
+    @endtime < MIDNIGHT ? @endtime - BEDTIME : MIDNIGHT - BEDTIME
   end
 
-  def hours_after_midnight
+  def after_midnight
     @endtime > MIDNIGHT ? @endtime - MIDNIGHT : 0
   end
 end
