@@ -41,17 +41,17 @@ describe 'BabySitterPay' do
   end
 
   context 'Acceptance testing : calculating pay for various pay hours' do
-    xit 'pay for hours upto bedtime' do
+    it 'pay for hours upto bedtime' do
       @sitting2 = BabySitterPay.new(17,22)
       expect(@sitting2.calculate_pay).to eq 60
     end
 
-    xit 'pay for hours after bedtime' do
+    it 'pay for hours after bedtime' do
       @sitting3 = BabySitterPay.new(17,23)
       expect(@sitting3.calculate_pay).to eq 68
     end
 
-    xit 'pay for hours after midnight' do
+    it 'pay for hours after midnight' do
       @sitting6 = BabySitterPay.new(17,28)
       expect(@sitting6.calculate_pay).to eq 140
     end
