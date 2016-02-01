@@ -40,7 +40,7 @@ describe 'BabySitterPay' do
     end
   end
 
-  context 'Acceptance testing : calculating pay for various pay hours' do
+  context 'Acceptance testing: calculating pay for various pay hours' do
     it 'pay for hours upto bedtime' do
       @sitting2 = BabySitterPay.new(17,22)
       expect(@sitting2.calculate_pay).to eq 60
