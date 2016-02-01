@@ -34,6 +34,10 @@ describe 'BabySitterPay' do
     it 'hours before midnight are calculated' do
       expect(@hours.before_midnight).to eq 2
     end
+
+    it 'hours after midnight are calculated' do
+      expect(@hours.after_midnight).to eq 4
+    end
   end
 
   context 'Acceptance testing : calculating pay for various pay hours' do
