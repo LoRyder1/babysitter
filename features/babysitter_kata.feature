@@ -14,3 +14,7 @@ Feature: Babysitter Kata
   Scenario: Multiple hours at standard rate
     Given I babysit from 17 to 22
     Then I should bill 60
+
+  Scenario: A full night babysitting
+    Given I babysit from 17 to 28
+    Then I should bill 140
