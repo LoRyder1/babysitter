@@ -22,7 +22,12 @@ describe 'BabySitterPay' do
     end
   end
 
-
+  context 'Calculating hours for babysitting' do
+    it 'hours before bedtime are calculated' do
+      @hours = HoursWorkedCalculator.new(17,28)
+      expect(@hours.before_bedtime).to eq 5
+    end
+  end
 
   context 'Acceptance testing : calculating pay for various pay hours' do
     xit 'pay for hours upto bedtime' do
