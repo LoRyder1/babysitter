@@ -12,16 +12,13 @@ class BabySitterPay
     # valid_schedule?
   end
 
-  def valid_schedule?
-    if @hours.start_time < 17
-      @message = "Must have start time after 5pm"
-      # puts "Must have start time after 5pm"
-    elsif @hours.endtime > 28
-      @message = "Must have end time before 4am"
-      # puts "Must have end time before 4am"
+  def valid_schedule hours
+    if hours.start_time < 17
+      "Must have start time after 5pm"
+    elsif hours.endtime > 28
+      "Must have end time before 4am"
     else
-      @message = "You have a valid schedule!"
-      # puts "You have a valid schedule!"
+      "You have a valid schedule!"
     end
   end
 
