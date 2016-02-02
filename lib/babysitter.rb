@@ -5,27 +5,30 @@ MIDNIGHT = 24
 BEDTIME = 22
 
 class BabySitterPay
-  attr_reader :message
+  attr_reader :message, :hours
   def initialize start_time, endtime
     @hours = HoursWorkedCalculator.new(start_time, endtime) 
     @message = nil
-    valid_schedule?
+    # valid_schedule?
   end
 
   def valid_schedule?
     if @hours.start_time < 17
       @message = "Must have start time after 5pm"
+      # puts "Must have start time after 5pm"
     elsif @hours.endtime > 28
       @message = "Must have end time before 4am"
+      # puts "Must have end time before 4am"
     else
       @message = "You have a valid schedule!"
+      # puts "You have a valid schedule!"
     end
   end
 
-  def calculate_pay
-    BEFORE_BEDTIME_PAY * (@hours.before_bedtime) +
-    AFTER_BEDTIME_PAY * (@hours.before_midnight) +
-    AFTER_MIDNIGHT_PAY * (@hours.after_midnight)
+  def calculate_pay hours
+    BEFORE_BEDTIME_PAY * (hours.before_bedtime) +
+    AFTER_BEDTIME_PAY * (hours.before_midnight) +
+    AFTER_MIDNIGHT_PAY * (hours.after_midnight)
   end
 end
 
@@ -47,3 +50,10 @@ class HoursWorkedCalculator
     @endtime > MIDNIGHT ? @endtime - MIDNIGHT : 0
   end
 end
+
+# @sitting = BabySitterPay.new(17,28)
+# @hx = HoursWorkedCalculator.new(17,27)
+# p @sitting.hours
+
+# # p @sitting.calculate_pay
+# p @sitting.calculate_pay(@hx)
