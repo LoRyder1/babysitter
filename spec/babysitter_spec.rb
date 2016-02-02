@@ -1,14 +1,11 @@
 require 'spec_helper'
-require 'pry'
 
 describe 'BabySitterPay' do
-
   let(:hour_mock) { double('hour_mock') }
   let(:hours) { double('hours') }
   subject { BabySitterPay.new(hour_mock, hour_mock) }
 
   context '#valid_schedule' do
-
     def set_schedule start, endtime
       allow(hours).to receive_messages(start_time: start, endtime: endtime)
     end
@@ -30,9 +27,8 @@ describe 'BabySitterPay' do
   end
 
   context '#calculate_pay for various pay hours' do
-
     def set_hours bedtime = 0, midtime = 0, morntime = 0
-      allow(hours).to receive_messages(before_bedtime: bedtime, before_midnight: midtime, before_morning: morntime )
+      allow(hours).to receive_messages(before_bedtime: bedtime, before_midnight: midtime, before_morning: morntime)
     end
 
     it 'can calculate a total for 1 hour before bedtime' do

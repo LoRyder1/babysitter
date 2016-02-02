@@ -9,7 +9,6 @@ class BabySitterPay
   def initialize start_time, endtime
     @hours = HoursWorkedCalculator.new(start_time, endtime) 
     @message = nil
-    # valid_schedule?
   end
 
   def valid_schedule hours
@@ -47,10 +46,3 @@ class HoursWorkedCalculator
     @endtime > MIDNIGHT ? @endtime - MIDNIGHT : 0
   end
 end
-
-# @sitting = BabySitterPay.new(17,28)
-# @hx = HoursWorkedCalculator.new(17,27)
-# p @sitting.hours
-
-# # p @sitting.calculate_pay
-# p @sitting.calculate_pay(@hx)
