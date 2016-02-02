@@ -28,7 +28,7 @@ class BabySitterPay
   def calculate_pay hours
     BEFORE_BEDTIME_PAY * (hours.before_bedtime) +
     AFTER_BEDTIME_PAY * (hours.before_midnight) +
-    AFTER_MIDNIGHT_PAY * (hours.after_midnight)
+    AFTER_MIDNIGHT_PAY * (hours.before_morning)
   end
 end
 
@@ -46,7 +46,7 @@ class HoursWorkedCalculator
     @endtime < MIDNIGHT ? @endtime - BEDTIME : MIDNIGHT - BEDTIME
   end
 
-  def after_midnight
+  def before_morning
     @endtime > MIDNIGHT ? @endtime - MIDNIGHT : 0
   end
 end

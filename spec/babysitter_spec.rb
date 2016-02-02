@@ -32,7 +32,7 @@ describe 'BabySitterPay' do
   #   end
 
   #   xit 'hours after midnight are calculated' do
-  #     expect(@hours.after_midnight).to eq 4
+  #     expect(@hours.before_morning).to eq 4
   #   end
   # end
 
@@ -40,12 +40,18 @@ describe 'BabySitterPay' do
 
     let(:arbitrary_time) { 0 }
     let(:hour_mock) { double('hour_mock') }
-    let(:hours) { double('hours', before_bedtime: 0, before_midnight: 0, after_midnight: 0) }
+    let(:hours) { double('hours', before_bedtime: 0, before_midnight: 0, before_morning: 0) }
+
+    def set_hours bedtime = 0, midtime = 0, morntime = 0
+    #   let(:hours) { double('hours', before_bedtime: bedtime, before_midnight: midnight, before_morning: morning )}
+      allow(hours).to receive_messages(before_bedtime: bedtime, before_midnight: midtime, before_morning: morntime )
+    end
 
     subject { BabySitterPay.new(hour_mock, hour_mock) }
 
     it 'can calculate a total for 1 hour before bedtime' do
-      allow(hours).to receive(:before_bedtime).and_return(1)
+      # allow(hours).to receive_messages(:before_bedtime => 1)
+      set_hours 1
       total = subject.calculate_pay(hours)
       expect(total).to eql (12 * 1)
     end
@@ -66,7 +72,7 @@ describe 'BabySitterPay' do
     it 'can calculate a night with three different rates' do
       allow(hours).to receive(:before_bedtime).and_return(2)
       allow(hours).to receive(:before_midnight).and_return(2)
-      allow(hours).to receive(:after_midnight).and_return(2)
+      allow(hours).to receive(:before_morning).and_return(2)
       total = subject.calculate_pay(hours)
       expect(total).to eql (12*2 + 8*2 + 16*2)
     end
