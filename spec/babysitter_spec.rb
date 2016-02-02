@@ -3,15 +3,15 @@ require 'pry'
 
 describe 'BabySitterPay' do
 
+  let(:hour_mock) { double('hour_mock') }
+  let(:hours) { double('hours') }
+  subject { BabySitterPay.new(hour_mock, hour_mock) }
+
   context '#valid_schedule' do
-    let(:hour_mock) { double('hour_mock') }
-    let(:hours) { double('hours') }
-    subject { BabySitterPay.new(hour_mock, hour_mock) }
 
     def set_schedule start, endtime
       allow(hours).to receive_messages(start_time: start, endtime: endtime)
     end
-
 
     it 'start time before 5pm results in invalid schedule' do
       set_schedule 16,22
@@ -25,22 +25,15 @@ describe 'BabySitterPay' do
 
     it 'valid schedule has proper message' do
       set_schedule 17,22
-      # @sitting2 = BabySitterPay.new(17,22)
-      # @sitting.valid_schedule?      
       expect(subject.valid_schedule(hours)).to eq "You have a valid schedule!"
     end
   end
 
   context '#calculate_pay for various pay hours' do
 
-    let(:hour_mock) { double('hour_mock') }
-    let(:hours) { double('hours') }
-
     def set_hours bedtime = 0, midtime = 0, morntime = 0
       allow(hours).to receive_messages(before_bedtime: bedtime, before_midnight: midtime, before_morning: morntime )
     end
-
-    subject { BabySitterPay.new(hour_mock, hour_mock) }
 
     it 'can calculate a total for 1 hour before bedtime' do
       set_hours 1
