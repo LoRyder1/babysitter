@@ -5,23 +5,24 @@ describe 'BabySitterPay' do
 
   context '#valid_schedule' do
     let(:hour_mock) { double('hour_mock') }
-    # subject { BabySitterPay.new(hour_mock, hour_mock)}
     let(:hours) { double('hours') }
+    subject { BabySitterPay.new(hour_mock, hour_mock) }
+
     def set_schedule start, endtime
       allow(hours).to receive_messages(start_time: start, endtime: endtime)
     end
 
-    subject { BabySitterPay.new(hour_mock, hour_mock) }
 
     it 'start time before 5pm results in invalid schedule' do
       set_schedule 16,22
       expect(subject.valid_schedule(hours)).to eq "Must have start time after 5pm"
     end
 
-    xit 'end time after 4am results in invalid schedule' do
-      @sitting1 = BabySitterPay.new(17,29)
-      @sitting.valid_schedule?      
-      expect(@sitting1.message).to eq "Must have end time before 4am"
+    it 'end time after 4am results in invalid schedule' do
+      set_schedule 17,29
+      # @sitting1 = BabySitterPay.new(17,29)
+      # @sitting.valid_schedule?      
+      expect(subject.valid_schedule(hours)).to eq "Must have end time before 4am"
     end
 
     xit 'valid schedule has proper message' do
