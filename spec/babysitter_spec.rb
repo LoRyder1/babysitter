@@ -20,15 +20,14 @@ describe 'BabySitterPay' do
 
     it 'end time after 4am results in invalid schedule' do
       set_schedule 17,29
-      # @sitting1 = BabySitterPay.new(17,29)
-      # @sitting.valid_schedule?      
       expect(subject.valid_schedule(hours)).to eq "Must have end time before 4am"
     end
 
-    xit 'valid schedule has proper message' do
-      @sitting2 = BabySitterPay.new(17,22)
-      @sitting.valid_schedule?      
-      expect(@sitting2.message).to eq "You have a valid schedule!"
+    it 'valid schedule has proper message' do
+      set_schedule 17,22
+      # @sitting2 = BabySitterPay.new(17,22)
+      # @sitting.valid_schedule?      
+      expect(subject.valid_schedule(hours)).to eq "You have a valid schedule!"
     end
   end
 
