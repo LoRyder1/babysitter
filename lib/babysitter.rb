@@ -5,10 +5,9 @@ MIDNIGHT = 24
 BEDTIME = 22
 
 class BabySitterPay
-  attr_reader :message, :hours
+  attr_reader :hours
   def initialize start_time, endtime
     @hours = HoursWorkedCalculator.new(start_time, endtime) 
-    @message = nil
   end
 
   def valid_schedule hours

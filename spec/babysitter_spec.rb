@@ -58,20 +58,25 @@ describe 'BabySitterPay' do
 end
 
 describe 'HoursWorkedCalculator' do
+  let(:hours) { HoursWorkedCalculator.new(17,28) }
+  let(:hours1) { HoursWorkedCalculator.new(18,27) }
+  let(:hours2) { HoursWorkedCalculator.new(18,23) }
 
   context '#before_bedtime, #before_midnight, #before_morning' do
-    let(:hours) { HoursWorkedCalculator.new(17,28) }
 
     it 'hours before bedtime are calculated' do
       expect(hours.before_bedtime).to eq 5
+      expect(hours1.before_bedtime).to eq 4
     end
 
     it 'hours before midnight are calculated' do
       expect(hours.before_midnight).to eq 2
+      expect(hours2.before_midnight).to eq 1
     end
 
     it 'hours after midnight are calculated' do
       expect(hours.before_morning).to eq 4
+      expect(hours1.before_morning).to eq 3
     end
   end
 end
